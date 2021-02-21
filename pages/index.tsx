@@ -1,5 +1,5 @@
 function HomePage() {
-  return <div>Ola, estou funcionando</div>
+  return <div style={{"fontFamily": 'Montserrat',}}>Ola, estou funcionando</div>
 }
 
 export default HomePage
