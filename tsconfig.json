@@ -10,12 +10,10 @@
     "module": "esnext",
     "moduleResolution": "node",
     "jsx": "preserve",
-    "rootDir": "src",
-    "baseUrl": "src",
+    "rootDir": ".",
+    "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "*"
-      ]
+      "@src/*": ["./src/*"]
     },
     "allowJs": true,
     "isolatedModules": true,
