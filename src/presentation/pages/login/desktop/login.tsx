@@ -1,9 +1,6 @@
 import React from 'react'
-import Image from 'next/image'
 import {
   LoginWrapper,
-  ImageSection,
-  Background,
   FormSection,
   FormWrapper,
   WelcomeTitle,
@@ -16,18 +13,12 @@ import {
   ForgotPassword,
   Link
 } from './login-styles'
+import { LoginImage } from '@src/presentation/components'
 
 const Login: React.FC = () => {
   return (
     <LoginWrapper>
-      <ImageSection>
-        <Background />
-        <Image
-          src="/login-image.png"
-          alt="Imagem de Login"
-          layout="fill"
-        />
-      </ImageSection>
+      <LoginImage />
       <FormSection>
         <FormWrapper>
           <WelcomeTitle>
