@@ -1,5 +1,10 @@
-function HomePage() {
-  return <div style={{"fontFamily": 'Montserrat',}}>Ola, estou funcionando</div>
+import React from 'react'
+import { DesktopLogin } from '@src/presentation/pages/login/'
+
+const LoginPage: React.FC = () => {
+  return (
+    <DesktopLogin />
+  )
 }
 
-export default HomePage
+export default LoginPage
