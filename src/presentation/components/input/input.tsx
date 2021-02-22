@@ -10,8 +10,6 @@ type Props = {
   htmlFor?: string
 }
 
-// React.DetailedHTMLProps<React.LabelHTMLAttributes<HTMLLabelElement>, HTMLLabelElement>
-
 const LoginInput: React.FC<Props> = (props: Props) => {
   return (
     <InputWrap>

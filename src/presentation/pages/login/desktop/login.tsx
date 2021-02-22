@@ -5,10 +5,6 @@ import {
   FormWrapper,
   WelcomeTitle,
   SubTitle,
-  InputWrap,
-  InputLabel,
-  Input,
-  Status,
   SubmitButton,
   ForgotPassword,
   Link
