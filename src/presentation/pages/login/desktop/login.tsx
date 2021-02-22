@@ -13,7 +13,7 @@ import {
   ForgotPassword,
   Link
 } from './login-styles'
-import { LoginImage } from '@src/presentation/components'
+import { LoginImage, LoginInput } from '@src/presentation/components'
 
 const Login: React.FC = () => {
   return (
@@ -27,16 +27,8 @@ const Login: React.FC = () => {
           <SubTitle>
             Para acessar a plataforma, faça seu login.
           </SubTitle>
-          <InputWrap>
-            <InputLabel>E-mail</InputLabel>
-            <Input></Input>
-            <Status>X</Status>
-          </InputWrap>
-          <InputWrap>
-            <InputLabel>Senha</InputLabel>
-            <Input></Input>
-            <Status>X</Status>
-          </InputWrap>
+          <LoginInput id='email_field' type="email" name='email' placeholder='Digite seu e-mail' labelName='E-mail' htmlFor='email_field'/>
+          <LoginInput id='password_field' type="password" name='password' placeholder='*******' labelName='Senha' htmlFor='password_field'/>
           <SubmitButton>Entrar</SubmitButton>
           <ForgotPassword>
             Esqueceu seu login ou senha? Clique <Link href="#">aqui</Link>
