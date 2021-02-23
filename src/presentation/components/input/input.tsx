@@ -14,10 +14,10 @@ type Props = {
 const LoginInput: React.FC<Props> = (props: Props) => {
   const { errorMessage } = useContext(Context)
   return (
-    <InputWrap>
+    <InputWrap role='input-wrapper'>
       <InputLabel {...props}> { props.labelName } </InputLabel>
       <Input {...props} />
-      {errorMessage && <Status>X</Status> }
+      {errorMessage && <Status role='input-error'>X</Status>}
     </InputWrap>
   )
 }
