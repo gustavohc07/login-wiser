@@ -23,9 +23,10 @@ type StateProps = {
 
 type Props = {
   validation: Validation
+  authentication: Authentication
 }
 
-const Login: React.FC<Props> = ({ validation }: Props) => {
+const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
   const [state, setState] = useState<StateProps>({
     errorMessage: '',
     emailError: '',
@@ -50,8 +51,12 @@ const Login: React.FC<Props> = ({ validation }: Props) => {
     validation.validate('password', state.password)
   }, [state.password])
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault()
+    await authentication.auth({
+      email: state.email,
+      password: state.password
+    })
     alert('Login efetuado com sucesso')
   }
 
