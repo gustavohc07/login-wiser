@@ -13,7 +13,9 @@
     "rootDir": ".",
     "baseUrl": ".",
     "paths": {
-      "@src/*": ["./src/*"]
+      "@src/*": [
+        "./src/*"
+      ]
     },
     "allowJs": true,
     "isolatedModules": true,

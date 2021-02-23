@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Input, InputLabel, InputWrap, Status } from './input-styles'
+import Context from '@src/presentation/context/form/form-context'
 
 type Props = {
   labelName?: string
@@ -11,11 +12,12 @@ type Props = {
 }
 
 const LoginInput: React.FC<Props> = (props: Props) => {
+  const { errorMessage } = useContext(Context)
   return (
     <InputWrap>
       <InputLabel {...props}> { props.labelName } </InputLabel>
       <Input {...props} />
-      <Status>X</Status>
+      {errorMessage && <Status>X</Status> }
     </InputWrap>
   )
 }

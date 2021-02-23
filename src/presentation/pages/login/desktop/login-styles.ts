@@ -8,7 +8,7 @@ export const LoginWrapper = styled.div`
   font-family: Montserrat ,sans-serif
 `
 
-export const FormSection = styled.div`
+export const FormSection = styled.form`
   width: 40%;
   margin: 136px 0 160px 112px;
 `
