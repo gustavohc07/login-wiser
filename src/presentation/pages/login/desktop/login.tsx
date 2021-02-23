@@ -16,6 +16,7 @@ import { Validation } from '@src/presentation/protocols/validation'
 type StateProps = {
   errorMessage: string
   email: string
+  password: string
 }
 
 type Props = {
@@ -25,12 +26,17 @@ type Props = {
 const Login: React.FC<Props> = ({ validation }: Props) => {
   const [state, setState] = useState<StateProps>({
     errorMessage: '',
-    email: ''
+    email: '',
+    password: ''
   })
 
   useEffect(() => {
     validation.validate({ email: state.email })
   }, [state.email])
+
+  useEffect(() => {
+    validation.validate({ password: state.password })
+  }, [state.password])
 
   return (
     <LoginWrapper>
