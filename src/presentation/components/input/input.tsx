@@ -26,11 +26,15 @@ const LoginInput: React.FC<Props> = (props: Props) => {
     return error
   }
 
+  const getStatus = (): string => {
+    return error ? 'X' : null
+  }
+
   return (
     <InputWrap role='input-wrapper'>
       <InputLabel {...props}> { props.labelName } </InputLabel>
       <Input {...props} data-testid={props.name} onChange={handleChange} />
-      {getTitle() && <Status role={`input-error-${props.name}`}>X</Status>}
+      {getTitle() && <Status role={`input-error-${props.name}`}>{getStatus()}</Status>}
       <FormStatus title={getTitle()} name={props.name} />
     </InputWrap>
   )
