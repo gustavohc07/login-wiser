@@ -62,4 +62,16 @@ describe('Login Component', () => {
     expect(emailStatus.title).toBe(errorMessage)
     expect(emailHighlightError.textContent).toBe('X')
   })
+
+  test('Should show email error if validation fails', () => {
+    const { sut, validationSpy } = makeSut()
+    const errorMessage = faker.random.words()
+    validationSpy.errorMessage = errorMessage
+    const passwordInput = sut.getByTestId('password')
+    fireEvent.input(passwordInput, { target: { value: faker.internet.password() } })
+    const passwordStatus = sut.getByTestId('error-wrap-password')
+    const passwordHighlightError = sut.queryByRole('input-error-password')
+    expect(passwordStatus.title).toBe(errorMessage)
+    expect(passwordHighlightError.textContent).toBe('X')
+  })
 })
