@@ -76,8 +76,7 @@ describe('Login Component', () => {
   })
 
   test('Should not show email error if validation succeeds', () => {
-    const { sut, validationSpy } = makeSut()
-    validationSpy.errorMessage = null
+    const { sut } = makeSut()
     const emailInput = sut.getByTestId('email')
     fireEvent.input(emailInput, { target: { value: faker.internet.email() } })
     const emailStatus = sut.getByTestId('error-wrap-email')
@@ -87,13 +86,24 @@ describe('Login Component', () => {
   })
 
   test('Should not show password error if validation succeeds', () => {
-    const { sut, validationSpy } = makeSut()
-    validationSpy.errorMessage = null
+    const { sut } = makeSut()
     const passwordInput = sut.getByTestId('password')
     fireEvent.input(passwordInput, { target: { value: faker.internet.email() } })
     const passwordStatus = sut.getByTestId('error-wrap-password')
     const passwordHighlightError = sut.queryByRole('input-error-password')
     expect(passwordStatus.title).toBe('')
     expect(passwordHighlightError).toBe(null)
+  })
+
+  test('Should emit a success alert if form is valid', async () => {
+    jest.spyOn(window, 'alert').mockImplementation(() => {})
+    const { sut } = makeSut()
+    const emailInput = sut.getByTestId('email')
+    const passwordInput = sut.getByTestId('password')
+    const submitButton = sut.getByTestId('submit') as HTMLButtonElement
+    fireEvent.input(passwordInput, { target: { value: faker.internet.email() } })
+    fireEvent.input(emailInput, { target: { value: faker.internet.email() } })
+    fireEvent.click(submitButton)
+    expect(window.alert).toBeCalledTimes(1)
   })
 })
