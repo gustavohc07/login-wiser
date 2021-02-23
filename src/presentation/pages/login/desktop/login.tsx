@@ -9,7 +9,7 @@ import {
   ForgotPassword,
   Link
 } from './login-styles'
-import { LoginImage, LoginInput, FormStatus } from '@src/presentation/components'
+import { LoginImage, LoginInput } from '@src/presentation/components'
 import Context from '@src/presentation/context/form/form-context'
 import { Validation } from '@src/presentation/protocols/validation'
 
