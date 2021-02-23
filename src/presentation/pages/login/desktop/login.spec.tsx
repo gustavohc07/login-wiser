@@ -43,7 +43,7 @@ describe('Login Component', () => {
     const emailInput = sut.getByTestId('email')
     fireEvent.input(emailInput, { target: { value: 'any_email' } })
     expect(validationSpy.input).toEqual({
-      email: 'any_email',
+      email: 'any_email'
     })
   })
 
