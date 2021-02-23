@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   LoginWrapper,
   FormSection,
@@ -11,20 +11,31 @@ import {
 } from './login-styles'
 import { LoginImage, LoginInput, FormStatus } from '@src/presentation/components'
 import Context from '@src/presentation/context/form/form-context'
+import { Validation } from '@src/presentation/protocols/validation'
 
 type StateProps = {
   errorMessage: string
+  email: string
 }
 
-const Login: React.FC = () => {
-  const [state] = useState<StateProps>({
-    errorMessage: ''
+type Props = {
+  validation: Validation
+}
+
+const Login: React.FC<Props> = ({ validation }: Props) => {
+  const [state, setState] = useState<StateProps>({
+    errorMessage: '',
+    email: ''
   })
+
+  useEffect(() => {
+    validation.validate({ email: state.email })
+  }, [state.email])
 
   return (
     <LoginWrapper>
       <LoginImage />
-      <Context.Provider value={state}>
+      <Context.Provider value={{ state, setState }}>
         <FormSection>
           <FormWrapper>
             <WelcomeTitle>

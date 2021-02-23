@@ -12,12 +12,19 @@ type Props = {
 }
 
 const LoginInput: React.FC<Props> = (props: Props) => {
-  const { errorMessage } = useContext(Context)
+  const { state, setState } = useContext(Context)
+  const handleChange = (event: React.FocusEvent<HTMLInputElement>): void => {
+    setState({
+      ...state,
+      [event.target.name]: event.target.value
+    })
+  }
+
   return (
     <InputWrap role='input-wrapper'>
       <InputLabel {...props}> { props.labelName } </InputLabel>
-      <Input {...props} />
-      {errorMessage && <Status role='input-error'>X</Status>}
+      <Input {...props} data-testid={props.name} onChange={handleChange} />
+      {state.errorMessage && <Status role='input-error'>X</Status>}
     </InputWrap>
   )
 }
