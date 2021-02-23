@@ -50,11 +50,16 @@ const Login: React.FC<Props> = ({ validation }: Props) => {
     validation.validate('password', state.password)
   }, [state.password])
 
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+    event.preventDefault()
+    alert('Login efetuado com sucesso')
+  }
+
   return (
     <LoginWrapper>
       <LoginImage />
       <Context.Provider value={{ state, setState }}>
-        <FormSection>
+        <FormSection onSubmit={handleSubmit}>
           <FormWrapper>
             <WelcomeTitle>
               Olá, seja bem-vindo!
@@ -64,7 +69,7 @@ const Login: React.FC<Props> = ({ validation }: Props) => {
             </SubTitle>
             <LoginInput id='email_field' type="email" name='email' placeholder='Digite seu e-mail' labelName='E-mail' htmlFor='email_field'/>
             <LoginInput id='password_field' type="password" name='password' placeholder='*******' labelName='Senha' htmlFor='password_field'/>
-            <SubmitButton type='submit'>Entrar</SubmitButton>
+            <SubmitButton data-testid='submit' type='submit'>Entrar</SubmitButton>
             <ForgotPassword>
               Esqueceu seu login ou senha? Clique <Link href="#">aqui</Link>
             </ForgotPassword>
