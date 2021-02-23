@@ -1,12 +1,15 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Span, ErrorWrap } from './form-status-style'
-import Context from '@src/presentation/context/form/form-context'
 
-const FormStatus: React.FC = () => {
-  const { errorMessage } = useContext(Context)
+type Props = {
+  name: string
+  title: string
+}
+
+const FormStatus: React.FC<Props> = (props: Props) => {
   return (
-    <ErrorWrap data-testid='error-wrap'>
-      {errorMessage && <Span>{errorMessage}</Span> }
+    <ErrorWrap title={props.title} data-testid={`error-wrap-${props.name}`}>
+      {props.title && <Span>{props.title}</Span> }
     </ErrorWrap>
   )
 }

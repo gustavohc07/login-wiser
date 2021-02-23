@@ -15,6 +15,8 @@ import { Validation } from '@src/presentation/protocols/validation'
 
 type StateProps = {
   errorMessage: string
+  emailError: string
+  passwordError: string
   email: string
   password: string
 }
@@ -26,11 +28,17 @@ type Props = {
 const Login: React.FC<Props> = ({ validation }: Props) => {
   const [state, setState] = useState<StateProps>({
     errorMessage: '',
+    emailError: '',
+    passwordError: '',
     email: '',
     password: ''
   })
 
   useEffect(() => {
+    setState({
+      ...state,
+      emailError: validation.validate('email', state.email)
+    })
     validation.validate('email', state.email)
   }, [state.email])
 
@@ -51,7 +59,6 @@ const Login: React.FC<Props> = ({ validation }: Props) => {
               Para acessar a plataforma, faça seu login.
             </SubTitle>
             <LoginInput id='email_field' type="email" name='email' placeholder='Digite seu e-mail' labelName='E-mail' htmlFor='email_field'/>
-            <FormStatus />
             <LoginInput id='password_field' type="password" name='password' placeholder='*******' labelName='Senha' htmlFor='password_field'/>
             <SubmitButton type='submit'>Entrar</SubmitButton>
             <ForgotPassword>

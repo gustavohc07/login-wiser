@@ -23,10 +23,14 @@ describe('Login Component', () => {
 
   test('Should start with initial state', () => {
     const { sut } = makeSut()
-    const errorWrap = sut.getByTestId('error-wrap')
-    const errorHighlights = sut.queryAllByRole('input-error')
-    expect(errorWrap.childElementCount).toBe(0)
-    expect(errorHighlights).toEqual([])
+    const emailErrorWrap = sut.getByTestId('error-wrap-email')
+    const emailErrorHighlight = sut.queryByRole('input-error-email')
+    const passwordErrorWrap = sut.getByTestId('error-wrap-password')
+    const passwordErrorHighlight = sut.queryByRole('input-error-password')
+    expect(emailErrorWrap.childElementCount).toBe(0)
+    expect(emailErrorHighlight).toBe(null)
+    expect(passwordErrorWrap.childElementCount).toBe(0)
+    expect(passwordErrorHighlight).toBe(null)
   })
 
   test('Should call validation with correct email', () => {
@@ -45,5 +49,17 @@ describe('Login Component', () => {
     fireEvent.input(passwordInput, { target: { value: password } })
     expect(validationSpy.fieldName).toBe('password')
     expect(validationSpy.fieldValue).toBe(password)
+  })
+
+  test('Should show email error if validation fails', () => {
+    const { sut, validationSpy } = makeSut()
+    const errorMessage = faker.random.words()
+    validationSpy.errorMessage = errorMessage
+    const emailInput = sut.getByTestId('email')
+    fireEvent.input(emailInput, { target: { value: faker.internet.email() } })
+    const emailStatus = sut.getByTestId('error-wrap-email')
+    const emailHighlightError = sut.queryByRole('input-error-email')
+    expect(emailStatus.title).toBe(errorMessage)
+    expect(emailHighlightError.textContent).toBe('X')
   })
 })
