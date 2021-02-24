@@ -3,6 +3,8 @@ import faker from 'faker'
 import { render, RenderResult, fireEvent, cleanup } from '@testing-library/react'
 import Login from './login'
 import { ValidationSpy } from '@src/presentation/test'
+import {Authentication, AuthenticationParams} from "@src/domain/usecases/authentication";
+import {AccountModel} from "@src/domain/models/account-model";
 
 class AuthenticationSpy implements Authentication {
   account = mockAccountModel()
