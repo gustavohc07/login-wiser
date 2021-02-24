@@ -12,6 +12,7 @@ import {
 import { LoginImage, LoginInput } from '@src/presentation/components'
 import Context from '@src/presentation/context/form/form-context'
 import { Validation } from '@src/presentation/protocols/validation'
+import { Authentication } from '@src/domain/usecases'
 
 type StateProps = {
   errorMessage: string
@@ -57,7 +58,6 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
       email: state.email,
       password: state.password
     })
-    alert('Login efetuado com sucesso')
   }
 
   return (
