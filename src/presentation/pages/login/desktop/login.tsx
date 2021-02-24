@@ -15,6 +15,7 @@ import { Validation } from '@src/presentation/protocols/validation'
 import { Authentication } from '@src/domain/usecases'
 
 type StateProps = {
+  isSubmitting: boolean
   errorMessage: string
   emailError: string
   passwordError: string
@@ -29,6 +30,7 @@ type Props = {
 
 const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
   const [state, setState] = useState<StateProps>({
+    isSubmitting: false,
     errorMessage: '',
     emailError: '',
     passwordError: '',
@@ -54,6 +56,10 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault()
+    if (state.isSubmitting) {
+      return
+    }
+    setState({ ...state, isSubmitting: true })
     await authentication.auth({
       email: state.email,
       password: state.password
