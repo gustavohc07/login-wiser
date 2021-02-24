@@ -128,6 +128,13 @@ describe('Login Component', () => {
     expect(authenticationSpy.callsCount).toBe(1)
   })
 
+  test('Should not call Authentication if form is invalid', async () => {
+    const { sut, authenticationSpy, validationSpy } = makeSut()
+    validationSpy.errorMessage = faker.random.words()
+    populatePasswordField(sut)
+    fireEvent.submit(sut.getByTestId('form'))
+    expect(authenticationSpy.callsCount).toBe(0)
+  })
 
   // test('Should emit a success alert if form is valid', async () => {
   //   jest.spyOn(window, 'alert').mockImplementation(() => {})
