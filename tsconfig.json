@@ -18,7 +18,7 @@
       ]
     },
     "allowJs": true,
-    "isolatedModules": true,
+    "isolatedModules": false,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
