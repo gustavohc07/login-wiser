@@ -110,6 +110,25 @@ describe('Login Component', () => {
     expect(passwordHighlightError).toBe(null)
   })
 
+  test('Should call Authentication with correct values', async () => {
+    const { sut, authenticationSpy } = makeSut()
+    const email = faker.internet.email()
+    const password = faker.internet.password()
+    simulateValidSubmit(sut, email, password)
+    expect(authenticationSpy.params).toEqual({
+      email,
+      password
+    })
+  })
+
+  test('Should call Authentication only once', async () => {
+    const { sut, authenticationSpy } = makeSut()
+    simulateValidSubmit(sut)
+    simulateValidSubmit(sut)
+    expect(authenticationSpy.callsCount).toBe(1)
+  })
+
+
   // test('Should emit a success alert if form is valid', async () => {
   //   jest.spyOn(window, 'alert').mockImplementation(() => {})
   //   const { sut } = makeSut()
@@ -121,15 +140,4 @@ describe('Login Component', () => {
   //   fireEvent.click(submitButton)
   //   expect(window.alert).toBeCalledTimes(1)
   // })
-
-  test('Should call Authentication with correct values', async () => {
-    const { sut, authenticationSpy } = makeSut()
-    const email = faker.internet.email()
-    const password = faker.internet.password()
-    simulateValidSubmit(sut, email, password)
-    expect(authenticationSpy.params).toEqual({
-      email,
-      password
-    })
-  })
 })
