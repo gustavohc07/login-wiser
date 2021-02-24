@@ -7,7 +7,6 @@ import { AccountModel } from '@src/domain/models'
 import { AuthenticationParams } from '@src/domain/usecases'
 import faker from 'faker'
 
-
 type SutTypes = {
   sut: RemoteAuthentication
   httpPostClientSpy: HttpPostClientSpy<AuthenticationParams, AccountModel>
