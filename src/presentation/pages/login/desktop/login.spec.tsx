@@ -3,8 +3,9 @@ import faker from 'faker'
 import { render, RenderResult, fireEvent, cleanup } from '@testing-library/react'
 import Login from './login'
 import { ValidationSpy } from '@src/presentation/test'
-import {Authentication, AuthenticationParams} from "@src/domain/usecases/authentication";
-import {AccountModel} from "@src/domain/models/account-model";
+import { Authentication, AuthenticationParams } from '@src/domain/usecases/authentication'
+import { AccountModel } from '@src/domain/models/account-model'
+import { mockAccountModel } from '@src/domain/test'
 
 class AuthenticationSpy implements Authentication {
   account = mockAccountModel()
@@ -24,8 +25,8 @@ type SutTypes = {
 
 const makeSut = (): SutTypes => {
   const validationSpy = new ValidationSpy()
-  const sut = render(<Login validation={validationSpy} authentication={authenticationSpy}/>)
   const authenticationSpy = new AuthenticationSpy()
+  const sut = render(<Login validation={validationSpy} authentication={authenticationSpy}/>)
   return {
     sut,
     validationSpy,
@@ -110,17 +111,17 @@ describe('Login Component', () => {
     expect(passwordHighlightError).toBe(null)
   })
 
-  test('Should emit a success alert if form is valid', async () => {
-    jest.spyOn(window, 'alert').mockImplementation(() => {})
-    const { sut } = makeSut()
-    const emailInput = sut.getByTestId('email')
-    const passwordInput = sut.getByTestId('password')
-    const submitButton = sut.getByTestId('submit') as HTMLButtonElement
-    fireEvent.input(passwordInput, { target: { value: faker.internet.email() } })
-    fireEvent.input(emailInput, { target: { value: faker.internet.email() } })
-    fireEvent.click(submitButton)
-    expect(window.alert).toBeCalledTimes(1)
-  })
+  // test('Should emit a success alert if form is valid', async () => {
+  //   jest.spyOn(window, 'alert').mockImplementation(() => {})
+  //   const { sut } = makeSut()
+  //   const emailInput = sut.getByTestId('email')
+  //   const passwordInput = sut.getByTestId('password')
+  //   const submitButton = sut.getByTestId('submit') as HTMLButtonElement
+  //   fireEvent.input(passwordInput, { target: { value: faker.internet.email() } })
+  //   fireEvent.input(emailInput, { target: { value: faker.internet.email() } })
+  //   fireEvent.click(submitButton)
+  //   expect(window.alert).toBeCalledTimes(1)
+  // })
 
   test('Should call Authentication with correct values', async () => {
     const { sut, authenticationSpy } = makeSut()
