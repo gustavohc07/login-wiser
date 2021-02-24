@@ -56,14 +56,25 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault()
-    if (state.isSubmitting || state.emailError || state.passwordError) {
-      return
+    try {
+      if (state.isSubmitting || state.emailError || state.passwordError) {
+        return
+      }
+      setState({ ...state, isSubmitting: true })
+      const account = await authentication.auth({
+        email: state.email,
+        password: state.password
+      })
+      localStorage.setItem('accessToken', account.accessToken)
+      alert('Login efetuado com sucesso')
+    } catch (error) {
+      setState({
+        ...state,
+        isSubmitting: false,
+        errorMessage: error.message
+      })
+      alert(state.errorMessage)
     }
-    setState({ ...state, isSubmitting: true })
-    await authentication.auth({
-      email: state.email,
-      password: state.password
-    })
   }
 
   return (

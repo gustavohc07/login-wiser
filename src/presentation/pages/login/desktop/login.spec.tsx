@@ -1,8 +1,10 @@
 import React from 'react'
 import faker from 'faker'
-import { render, RenderResult, fireEvent, cleanup } from '@testing-library/react'
+import 'jest-localstorage-mock'
+import { render, RenderResult, fireEvent, cleanup, waitFor } from '@testing-library/react'
 import Login from './login'
 import { ValidationSpy, AuthenticationSpy } from '@src/presentation/test'
+import {InvalidCredentialsError} from "@src/domain/errors";
 
 type SutTypes = {
   sut: RenderResult
@@ -40,6 +42,9 @@ const populatePasswordField = (sut: RenderResult, password = faker.internet.pass
 
 describe('Login Component', () => {
   afterEach(cleanup)
+  beforeEach(() => {
+    localStorage.clear()
+  })
 
   test('Should start with initial state', () => {
     const { sut } = makeSut()
@@ -136,15 +141,22 @@ describe('Login Component', () => {
     expect(authenticationSpy.callsCount).toBe(0)
   })
 
-  // test('Should emit a success alert if form is valid', async () => {
-  //   jest.spyOn(window, 'alert').mockImplementation(() => {})
-  //   const { sut } = makeSut()
-  //   const emailInput = sut.getByTestId('email')
-  //   const passwordInput = sut.getByTestId('password')
-  //   const submitButton = sut.getByTestId('submit') as HTMLButtonElement
-  //   fireEvent.input(passwordInput, { target: { value: faker.internet.email() } })
-  //   fireEvent.input(emailInput, { target: { value: faker.internet.email() } })
-  //   fireEvent.click(submitButton)
-  //   expect(window.alert).toBeCalledTimes(1)
-  // })
+  test('Should present alert if Authentication fails', async () => {
+    const { sut, authenticationSpy } = makeSut()
+    const error = new InvalidCredentialsError()
+    jest.spyOn(authenticationSpy, 'auth').mockReturnValueOnce(Promise.reject(error))
+    jest.spyOn(window, 'alert').mockImplementation(() => {})
+    simulateValidSubmit(sut)
+    const form = sut.getByTestId('form')
+    await waitFor(() => form)
+    expect(window.alert).toBeCalledTimes(1)
+  })
+
+  test('Should add accessToken to localstorage on success', async () => {
+    jest.spyOn(window, 'alert').mockImplementation(() => {})
+    const { sut, authenticationSpy } = makeSut()
+    simulateValidSubmit(sut)
+    await waitFor(() => sut.getByTestId('form'))
+    expect(localStorage.setItem).toHaveBeenCalledWith('accessToken', authenticationSpy.account.accessToken )
+  })
 })

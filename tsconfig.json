@@ -9,7 +9,7 @@
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
-    "jsx": "react",
+    "jsx": "preserve",
     "rootDir": ".",
     "baseUrl": ".",
     "paths": {
@@ -22,6 +22,8 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
+    "resolveJsonModule": true,
+    "strict": false
   },
   "include": [
     "src",
