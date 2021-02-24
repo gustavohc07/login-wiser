@@ -20,7 +20,6 @@
     "allowJs": true,
     "isolatedModules": true,
     "skipLibCheck": true,
-    "strict": false,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "resolveJsonModule": true
