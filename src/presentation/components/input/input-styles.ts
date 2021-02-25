@@ -1,5 +1,9 @@
 import styled from 'styled-components'
 
+type InputType = {
+  error: boolean
+}
+
 export const InputWrap = styled.div`
   display: flex;
   position: relative;
@@ -21,10 +25,10 @@ export const InputLabel = styled.label`
   color: #383E71;
 `
 
-export const Input = styled.input`
+export const Input = styled.input<InputType>`
   display: flex;
   line-height: 48px;
-  border: 1px solid #989FDB;
+  border: ${props => props.error ? '1px solid #FF377F' : '1px solid #989FDB'};
   box-sizing: border-box;
   border-radius: 8px;
   padding-left: 17px;

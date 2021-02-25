@@ -44,7 +44,7 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
       emailError: validation.validate('email', state.email)
     })
     validation.validate('email', state.email)
-  }, [state.email])
+  }, [state.email, state.isSubmitting])
 
   useEffect(() => {
     setState({
@@ -52,12 +52,17 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
       passwordError: validation.validate('password', state.password)
     })
     validation.validate('password', state.password)
-  }, [state.password])
+  }, [state.password, state.isSubmitting])
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault()
     try {
       if (state.isSubmitting || state.emailError || state.passwordError) {
+        setState({
+          ...state,
+          passwordError: validation.validate('password', state.password),
+          emailError: validation.validate('email', state.email)
+        })
         return
       }
       setState({ ...state, isSubmitting: true })

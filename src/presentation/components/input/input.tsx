@@ -30,10 +30,14 @@ const LoginInput: React.FC<Props> = (props: Props) => {
     return error ? 'X' : null
   }
 
+  const getErrorBorder = (): boolean => {
+    return !!error
+  }
+
   return (
     <InputWrap role='input-wrapper'>
       <InputLabel {...props}> { props.labelName } </InputLabel>
-      <Input {...props} data-testid={props.name} onChange={handleChange} />
+      <Input {...props} data-testid={props.name} onChange={handleChange} error={getErrorBorder()} />
       {getTitle() && <Status role={`input-error-${props.name}`}>{getStatus()}</Status>}
       <FormStatus title={getTitle()} name={props.name} />
     </InputWrap>
