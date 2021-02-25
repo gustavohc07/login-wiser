@@ -5,14 +5,37 @@ export const LoginWrapper = styled.div`
   flex-direction: row;
   height: 100vh;
   background-color: #FAF5FF;
-  font-family: Montserrat ,sans-serif
+  font-family: Montserrat ,sans-serif;
+  
+  @media (max-width: 375px) {
+    background-color: #130525;
+  }
 `
 
 export const FormSection = styled.form`
-  width: 40%;
+  width: 30%;
   margin: 136px 0 160px 112px;
-`
+  
+  @media (max-width: 768px) {
+    margin: 0;
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    align-self: center;
+    align-items: center;
+  }
 
+  @media (max-width: 375px) {
+    border-radius: 8px;
+    margin: 0 32px;
+    position: relative;
+    z-index: 3;
+    background-color: white;
+    display: flex;
+    height: 380px;
+  }
+`
 export const WelcomeTitle = styled.h1`
   font-style: normal;
   font-weight: normal;
@@ -20,6 +43,17 @@ export const WelcomeTitle = styled.h1`
   line-height: 48px;
   margin-bottom: 8px;
   color: #383E71;
+
+  @media (max-width: 375px) {
+    align-self: center;
+    margin-top: 24px;
+    width: 160px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 32px;
+    text-align: center;
+  }
 `
 
 export const SubTitle = styled.h2`
@@ -30,33 +64,30 @@ export const SubTitle = styled.h2`
   line-height: 20px;
   color: #989FDB;
   margin-bottom: 32px;
+
+  @media (max-width: 375px) {
+    font-style: normal;
+    width: 255px;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+    margin-bottom: 8px;
+  }
 `
 
 export const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 250px;
-`
 
-export const InputWrap = styled.div`
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  margin-top: 16px;
-`
+  @media (max-width: 768px) {
+    width: 280px
+  }
 
-export const InputLabel = styled.label`
-  font-style: normal;
-  font-weight: normal;
-  font-size: 10px;
-
-  display: flex;
-  align-items: center;
-  margin-bottom: 8px;
-  margin-left: 8px;
-
-  text-transform: uppercase;
-  color: #383E71;
+  @media (max-width: 375px) {
+    width: 250px
+  }
 `
 
 export const Input = styled.input`
@@ -103,6 +134,22 @@ export const SubmitButton = styled.button`
   &:hover {
     background: #9D25B0
   }
+
+  @media (max-width: 375px) {
+    box-shadow: none;
+    width: 150px;
+    top: 332px;
+    left: 76px;
+    position: absolute;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 48px;
+    
+    text-align: center;
+
+    color: #FFFFFF;
+  }
 `
 
 export const ForgotPassword = styled.div`
@@ -111,13 +158,39 @@ export const ForgotPassword = styled.div`
   font-weight: normal;
   font-size: 14px;
   line-height: 20px;
-  /* or 143% */
-
   text-align: center;
 
   color: #989FDB;
+
+  @media (max-width: 375px) {
+    position: absolute;
+    width: 212px;
+    z-index: 10000;
+    left: 48px;
+    top: 400px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    /* or 143% */
+
+    text-align: center;
+
+    color: #FFFFFF;
+  }
+
 `
 
 export const Link = styled.a`
-  
+  @media (max-width: 375px) {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    /* or 143% */
+
+    text-align: center;
+
+    color: #FFFFFF;
+  }
 `

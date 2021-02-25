@@ -12,5 +12,7 @@ export const Span = styles.div`
   font-size: 10px;
   line-height: 48px;
   color: #FF377F;
-
+    @media (max-width: 375px) {
+      line-height: 24px;
+  }
 `
