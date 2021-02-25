@@ -9,10 +9,10 @@ const LoginPage: React.FC = () => {
   const url = 'http://fordeves.herokuapp.com/api/login'
   const axiosHttpClient = new AxiosHttpClient()
   const remoteAuthentication = new RemoteAuthentication(url, axiosHttpClient)
-  const validationComposite = ValidationComposite.build({
+  const validationComposite = ValidationComposite.build([
     ...ValidationBuilder.field('email').required().email().build(),
     ...ValidationBuilder.field('password').required().min(5).build()
-  })
+  ])
   return (
     <DesktopLogin
       authentication={remoteAuthentication}
