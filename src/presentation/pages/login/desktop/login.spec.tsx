@@ -70,7 +70,9 @@ describe('Login Component', () => {
     const { sut, validationSpy } = makeSut()
     const passwordInput = sut.getByTestId('password')
     const password = faker.internet.password()
+    const submitButton = sut.getByTestId('submit') as HTMLButtonElement
     fireEvent.input(passwordInput, { target: { value: password } })
+    fireEvent.click(submitButton)
     expect(validationSpy.fieldName).toBe('password')
     expect(validationSpy.fieldValue).toBe(password)
   })
@@ -92,9 +94,9 @@ describe('Login Component', () => {
     validationSpy.errorMessage = errorMessage
     populatePasswordField(sut)
     const passwordStatus = sut.getByTestId('error-wrap-password')
-    const passwordHighlightError = sut.queryByRole('input-error-password')
+    const submitButton = sut.getByTestId('submit') as HTMLButtonElement
+    fireEvent.click(submitButton)
     expect(passwordStatus.title).toBe(errorMessage)
-    expect(passwordHighlightError.textContent).toBe('X')
   })
 
   test('Should not show email error if validation succeeds', () => {
@@ -136,7 +138,7 @@ describe('Login Component', () => {
   test('Should not call Authentication if form is invalid', async () => {
     const { sut, authenticationSpy, validationSpy } = makeSut()
     validationSpy.errorMessage = faker.random.words()
-    populatePasswordField(sut)
+    populateEmailField(sut)
     fireEvent.submit(sut.getByTestId('form'))
     expect(authenticationSpy.callsCount).toBe(0)
   })

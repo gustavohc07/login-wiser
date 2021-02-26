@@ -11,7 +11,7 @@ const LoginPage: React.FC = () => {
   const remoteAuthentication = new RemoteAuthentication(url, axiosHttpClient)
   const validationComposite = ValidationComposite.build([
     ...ValidationBuilder.field('email').required().email().build(),
-    ...ValidationBuilder.field('password').build()
+    ...ValidationBuilder.field('password').required().min(5).build()
   ])
   return (
     <DesktopLogin
