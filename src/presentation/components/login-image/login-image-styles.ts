@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import Image from 'next/image'
+import React from "react";
 
 export const Background = styled.div`
   background: linear-gradient(180deg, #130525 0%, rgba(105, 57, 153, 0) 100%);
@@ -32,6 +33,8 @@ type ImageProps = {
 }
 
 export const ImageStyle = styled(Image)<ImageProps>`
-  @media (min-width: 768px) {
+  content: url("../../../../public/login-image.png");
+  @media (max-width: 768px) {
+    content: url("../../../../public/login-image-tablet.png");
   }
 `
