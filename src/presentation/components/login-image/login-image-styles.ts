@@ -32,8 +32,6 @@ export const ImageSection = styled.div`
     height: 60%;
     z-index: 1;
   }
-
-
 `
 
 type ImageProps = {
@@ -41,8 +39,5 @@ type ImageProps = {
 }
 
 export const ImageStyle = styled(Image)<ImageProps>`
-  content: url("../../../../public/login-image.png");
-  @media (max-width: 768px) {
-    content: url("../../../../public/login-image-tablet.png");
-  }
+  
 `
