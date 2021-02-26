@@ -1,5 +1,5 @@
 import React from 'react'
-import { DesktopLogin } from '@src/presentation/pages/login'
+import { Login } from '@src/presentation/pages/login'
 import { RemoteAuthentication } from '@src/data/usecases/authentication/remote-authentication'
 import { AxiosHttpClient } from '@src/infra/http/axios-http-client/axios-http-client'
 import { ValidationComposite } from '@src/validation/validators/validation-composite/validation-composite'
@@ -14,7 +14,7 @@ export const makeLogin: React.FC = () => {
     ...ValidationBuilder.field('password').required().min(5).build()
   })
   return (
-    <DesktopLogin
+    <Login
       authentication={remoteAuthentication}
       validation={validationComposite}
     />
