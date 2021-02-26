@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import Image from 'next/image'
-import React from "react";
 
 export const Background = styled.div`
   background: linear-gradient(180deg, #130525 0%, rgba(105, 57, 153, 0) 100%);
@@ -17,15 +16,24 @@ export const ImageSection = styled.div`
   position: relative;
 
   @media (max-width: 768px) {
-    width: 327px;
+    width: 300px;
   }
 
+  @media (max-width: 420px) {
+    position: absolute;
+    width: 100%;
+    height: 60%;
+    z-index: 1;
+  }
+  
   @media (max-width: 375px) {
     position: absolute;
     width: 100%;
     height: 60%;
     z-index: 1;
   }
+
+
 `
 
 type ImageProps = {

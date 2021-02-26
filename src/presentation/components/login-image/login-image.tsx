@@ -2,7 +2,6 @@ import React from 'react'
 import { Background, ImageSection, ImageStyle } from './login-image-styles'
 
 const LoginImage: React.FC = () => {
-
   return (
     <ImageSection>
       <Background />

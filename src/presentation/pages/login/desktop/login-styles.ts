@@ -6,6 +6,10 @@ export const LoginWrapper = styled.div`
   height: 100vh;
   background-color: #FAF5FF;
   font-family: Montserrat ,sans-serif;
+
+  @media (max-width: 420px) {
+    background-color: #130525;
+  }
   
   @media (max-width: 375px) {
     background-color: #130525;
@@ -25,7 +29,17 @@ export const FormSection = styled.form`
     align-self: center;
     align-items: center;
   }
-
+  
+  @media (max-width: 420px) {
+    border-radius: 8px;
+    margin: 0 32px;
+    position: relative;
+    z-index: 3;
+    background-color: white;
+    display: flex;
+    height: 380px;
+  }
+  
   @media (max-width: 375px) {
     border-radius: 8px;
     margin: 0 32px;
@@ -44,6 +58,17 @@ export const WelcomeTitle = styled.h1`
   margin-bottom: 8px;
   color: #383E71;
 
+  @media (max-width: 420px) {
+    align-self: center;
+    margin-top: 24px;
+    width: 160px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 32px;
+    text-align: center;
+  }
+  
   @media (max-width: 375px) {
     align-self: center;
     margin-top: 24px;
@@ -65,6 +90,16 @@ export const SubTitle = styled.h2`
   color: #989FDB;
   margin-bottom: 32px;
 
+  @media (max-width: 420px) {
+    font-style: normal;
+    width: 255px;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  
   @media (max-width: 375px) {
     font-style: normal;
     width: 255px;
@@ -74,6 +109,7 @@ export const SubTitle = styled.h2`
     text-align: center;
     margin-bottom: 8px;
   }
+
 `
 
 export const FormWrapper = styled.div`
@@ -84,7 +120,11 @@ export const FormWrapper = styled.div`
   @media (max-width: 768px) {
     width: 280px
   }
-
+  
+  @media (max-width: 420px) {
+    width: 250px
+  }
+  
   @media (max-width: 375px) {
     width: 250px
   }
@@ -135,6 +175,22 @@ export const SubmitButton = styled.button`
     background: #9D25B0
   }
 
+  @media (max-width: 420px) {
+    box-shadow: none;
+    width: 150px;
+    top: 332px;
+    left: 100px;
+    position: absolute;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 48px;
+
+    text-align: center;
+
+    color: #FFFFFF;
+  }
+  
   @media (max-width: 375px) {
     box-shadow: none;
     width: 150px;
@@ -162,6 +218,20 @@ export const ForgotPassword = styled.div`
 
   color: #989FDB;
 
+  @media (max-width: 420px) {
+    position: absolute;
+    width: 212px;
+    z-index: 10000;
+    left: 70px;
+    top: 400px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    color: #FFFFFF;
+  }
+
   @media (max-width: 375px) {
     position: absolute;
     width: 212px;
@@ -172,25 +242,28 @@ export const ForgotPassword = styled.div`
     font-weight: normal;
     font-size: 14px;
     line-height: 20px;
-    /* or 143% */
-
     text-align: center;
-
     color: #FFFFFF;
   }
 
 `
 
 export const Link = styled.a`
+  @media (max-width: 420px) {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    color: #FFFFFF;
+  }
+  
   @media (max-width: 375px) {
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
     line-height: 20px;
-    /* or 143% */
-
     text-align: center;
-
     color: #FFFFFF;
   }
 `
