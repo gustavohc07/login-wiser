@@ -36,8 +36,16 @@ const LoginInput: React.FC<Props> = (props: Props) => {
 
   return (
     <InputWrap role='input-wrapper'>
-      <InputLabel {...props}> { props.labelName } </InputLabel>
-      <Input {...props} data-testid={props.name} onChange={handleChange} error={getErrorBorder()} />
+      <InputLabel htmlFor={props.htmlFor}> { props.labelName } </InputLabel>
+      <Input
+        id={props.id}
+        placeholder={props.placeholder}
+        data-testid={props.name}
+        onChange={handleChange}
+        error={getErrorBorder()}
+        type={props.type}
+        name={props.name}
+      />
       {getTitle() && <Status role={`input-error-${props.name}`}>{getStatus()}</Status>}
       <FormStatus title={getTitle()} name={props.name} />
     </InputWrap>
