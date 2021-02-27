@@ -165,6 +165,7 @@ export const SubmitButton = styled.button`
   border: 0;
   /* identical to box height, or 125% */
   color: #FFFFFF;
+  cursor: pointer;
 
   &:focus {
     outline: #383E71;

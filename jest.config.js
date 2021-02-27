@@ -3,7 +3,10 @@ module.exports = {
   testPathIgnorePatterns: ['<rootDir>/.next/', '<rootDir>/node_modules/'],
   setupFilesAfterEnv: ['<rootDir>/setupTests.ts'],
   collectCoverageFrom: [
-    '<rootDir>/src/**/*.{ts,tsx}'
+    '<rootDir>/src/**/*.{ts,tsx}',
+    '!<rootDir>/src/main/**/*',
+    '!<rootDir>/pages/**/*.{ts,tsx}',
+    '!**/*.d.ts'
   ],
   coverageDirectory: 'coverage',
   testEnvironment: 'jsdom',
