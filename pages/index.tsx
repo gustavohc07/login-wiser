@@ -1,22 +1,13 @@
 import React from 'react'
 import { Login } from '@src/presentation/pages/login/'
-import { AxiosHttpClient } from '@src/infra/http/axios-http-client/axios-http-client'
-import { RemoteAuthentication } from '@src/data/usecases/authentication/remote-authentication'
-import { ValidationComposite } from '@src/validation/validators/validation-composite/validation-composite'
-import { ValidationBuilder } from '@src/validation/builder/validation-builder'
+import { makeRemoteAuthentication } from '@src/main/factories/usecases/authentication/remote-authenticfation-factory'
+import { makeLoginValidation } from '@src/main/factories/pages/login/login-validation-factory'
 
 const LoginPage: React.FC = () => {
-  const url = 'https://fordeves.herokuapp.com/api/login'
-  const axiosHttpClient = new AxiosHttpClient()
-  const remoteAuthentication = new RemoteAuthentication(url, axiosHttpClient)
-  const validationComposite = ValidationComposite.build([
-    ...ValidationBuilder.field('email').required().email().build(),
-    ...ValidationBuilder.field('password').required().min(5).build()
-  ])
   return (
     <Login
-      authentication={remoteAuthentication}
-      validation={validationComposite}
+      authentication={makeRemoteAuthentication()}
+      validation={makeLoginValidation()}
     />
   )
 }

@@ -55,6 +55,7 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault()
     try {
+      // console.log(state.isSubmitting, state.emailError, state.passwordError, (state.password === ''), (state.password.length < 5))
       if (state.isSubmitting || state.emailError || state.passwordError || state.password === '' || state.password.length < 5) {
         setState({
           ...state,
@@ -69,7 +70,7 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
         password: state.password
       })
       localStorage.setItem('accessToken', account.accessToken)
-      alert('Login efetuado com sucesso')
+      window.alert('Login Efetuado com sucesso!')
     } catch (error) {
       setState({
         ...state,
