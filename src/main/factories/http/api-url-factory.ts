@@ -1,3 +1,3 @@
 export const makeApiUrl = (): string => {
-  return 'https://60345067843b15001793263c.mockapi.io/api/v1/session'
+  return 'https://60399f94d2b9430017d243ff.mockapi.io/api/v1/session'
 }

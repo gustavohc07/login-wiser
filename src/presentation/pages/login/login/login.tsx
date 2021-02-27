@@ -13,6 +13,7 @@ import { LoginImage, LoginInput } from '@src/presentation/components'
 import Context from '@src/presentation/context/form/form-context'
 import { Validation } from '@src/presentation/protocols/validation'
 import { Authentication } from '@src/domain/usecases'
+import {InvalidCredentialsError} from "@src/domain/errors";
 
 type StateProps = {
   isSubmitting: boolean
@@ -55,7 +56,6 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault()
     try {
-      // console.log(state.isSubmitting, state.emailError, state.passwordError, (state.password === ''), (state.password.length < 5))
       if (state.isSubmitting || state.emailError || state.passwordError || state.password === '' || state.password.length < 5) {
         setState({
           ...state,
@@ -77,7 +77,7 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
         isSubmitting: false,
         errorMessage: error.message
       })
-      alert(state.errorMessage)
+      alert(error.message)
     }
   }
 
